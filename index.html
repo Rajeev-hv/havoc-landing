@@ -1,113 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAVOC Semiconductor R&D Plant | Under Development</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Havoc Semiconductor</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <!-- IMPORTANT FOR MOBILE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at center, #0b1c2d 0%, #000814 70%);
-    color: #ffffff;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #0f1c2e, #050b16);
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            overflow-x: hidden;
+            text-align: center;
+        }
 
-.container {
-    max-width: 900px;
-    padding: 40px;
-}
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
 
-.logo {
-    width: 140px;
-    margin-bottom: 30px;
-    filter: drop-shadow(0 0 20px #0077ff);
-}
+        /* LOGO */
+        .logo {
+            width: clamp(80px, 20vw, 180px);
+            height: auto;
+            margin-bottom: 30px;
+        }
 
-h1 {
-    font-size: 3rem;
-    letter-spacing: 6px;
-    margin-bottom: 20px;
-}
+        /* MAIN TITLE */
+        h1 {
+            font-size: clamp(32px, 6vw, 70px);
+            letter-spacing: 4px;
+            margin: 0;
+        }
 
-.highlight {
-    color: #00aaff;
-}
+        .highlight {
+            color: #00d9ff;
+            text-shadow: 0 0 10px #00d9ff,
+                         0 0 25px #0077ff;
+        }
 
-.tagline {
-    font-size: 1.2rem;
-    color: #b0c4de;
-    margin-bottom: 30px;
-}
+        /* FOUNDER */
+        .founder {
+            margin-top: 15px;
+            font-size: clamp(18px, 3vw, 26px);
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 0 0 8px #00aaff,
+                         0 0 18px #0077ff;
+            font-weight: 600;
+        }
 
-.divider {
-    width: 80px;
-    height: 3px;
-    background: #00aaff;
-    margin: 30px auto;
-}
+        /* DIVIDER */
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: #00d9ff;
+            margin: 30px auto;
+            box-shadow: 0 0 12px #00d9ff;
+        }
 
-.footer {
-    margin-top: 40px;
-    font-size: 0.9rem;
-    color: #6c8fbf;
-}
+        /* TAGLINE */
+        .tagline {
+            font-size: clamp(14px, 2.5vw, 20px);
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
 
-.glow {
-    animation: glow 2s infinite alternate;
-}
+        /* FOOTER */
+        .footer {
+            margin-top: 40px;
+            font-size: clamp(13px, 2vw, 18px);
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffaa;
+        }
 
-.founder {
-    margin-top: 12px;
-    font-size: 26px;             
-    letter-spacing: 3px;
-    color: #ffffff;               
-    text-shadow: 0 0 8px #00aaff,
-                 0 0 18px #0077ff;  
-    font-weight: 600;
-}
-@keyframes glow {
-    from { text-shadow: 0 0 10px #0077ff; }
-    to { text-shadow: 0 0 25px #00aaff; }
-}
-</style>
+        /* MOBILE TWEAKS */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 15px;
+            }
+
+            h1 {
+                letter-spacing: 2px;
+            }
+
+            .founder {
+                letter-spacing: 1px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
 
-<div class="container">
-    <!-- Replace with your logo file path -->
-    <img src="havoc-logo.png" class="logo" alt="HAVOC Logo">
+        <!-- LOGO -->
+        <img src="havoc-logo.png" class="logo" alt="HAVOC Logo">
 
-    <h1 class="glow">HAVOC <span class="highlight">SEMICONDUCTOR</span></h1>
-    <h2 class="founder">Founder - Rajeev </h2>
+        <!-- TITLE -->
+        <h1>
+            HAVOC <span class="highlight">SEMICONDUCTOR</span>
+        </h1>
 
-    <div class="divider"></div>
+        <!-- FOUNDER -->
+        <h2 class="founder">Founder – Rajeev</h2>
 
-    <p class="tagline">
-        Advanced Semiconductor Research & Development Facility <br>
-        Next-Generation Chip Architecture | Fabrication Innovation <br> Deep Tech Infrastructure
-    </p>
+        <div class="divider"></div>
 
-    <div class="divider"></div>
+        <!-- TAGLINE -->
+        <p class="tagline">
+            Advanced Semiconductor Research & Development Facility<br>
+            Next-Generation Chip Architecture | Fabrication Innovation | Deep Tech Infrastructure
+        </p>
 
-    <p class="footer">
-        🚧 Our Facility Is Under Development <br>
-        Precision. Disruption. Scale.
-    </p>
-</div>
+        <div class="divider"></div>
 
+        <!-- FOOTER -->
+        <p class="footer">
+            ⚡ Our Facility Is Under Development<br>
+            Precision. Disruption. Scale.
+        </p>
+
+    </div>
 </body>
 </html>
