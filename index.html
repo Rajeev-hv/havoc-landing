@@ -434,6 +434,44 @@ footer{border-top:1px solid rgba(99,91,255,.08);padding:28px 48px;display:flex;a
   .sc-row{grid-template-columns:1fr 1fr}
   .auth-left{display:none}.auth-right{width:100%}
 }
+
+/* ─── DASHBOARD OVERLAY ─── */
+#dashOverlay{position:fixed;inset:0;z-index:2000;background:#fff;opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.16,1,.3,1);overflow-y:auto;transform:translateY(20px)}
+#dashOverlay.open{opacity:1;pointer-events:all;transform:translateY(0);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)}
+.dash-nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,91,255,.08);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;z-index:10}
+.dash-logo{font-family:'Cinzel',serif;font-size:.9rem;font-weight:500;letter-spacing:.42em;color:var(--ink)}
+.dash-close{width:36px;height:36px;border-radius:50%;background:rgba(99,91,255,.06);border:1px solid rgba(99,91,255,.1);display:flex;align-items:center;justify-content:center;cursor:none;color:var(--muted);font-size:1rem;transition:all .2s}
+.dash-close:hover{background:rgba(99,91,255,.12);color:var(--ink)}
+.dash-body{max-width:1000px;margin:0 auto;padding:48px 48px 80px}
+.dash-hello{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.dash-hello span{background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
+.dash-sub{font-size:.9rem;color:var(--muted);font-weight:300;margin-bottom:40px}
+.dash-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.dash-card{background:linear-gradient(145deg,#ffffff,#f8f7ff);border:1px solid rgba(99,91,255,.1);border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(99,91,255,.07)}
+.dash-card-label{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.dash-card-val{font-family:'Fraunces',serif;font-size:2rem;font-weight:300;letter-spacing:-.02em;background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dash-card-desc{font-size:.75rem;color:var(--muted);margin-top:4px}
+.dash-section{margin-bottom:32px}
+.dash-section-title{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.dash-section-title::before{content:'';display:inline-block;width:16px;height:2px;background:var(--purple);border-radius:1px}
+.dash-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dash-info-item{background:#fafbff;border:1px solid rgba(99,91,255,.08);border-radius:12px;padding:16px 20px}
+.dash-info-label{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.dash-info-val{font-size:.9rem;font-weight:500;color:var(--ink)}
+.dash-phase{background:linear-gradient(135deg,rgba(99,91,255,.05),rgba(0,212,255,.03));border:1px solid rgba(99,91,255,.12);border-radius:16px;padding:28px;position:relative;overflow:hidden;margin-bottom:32px}
+.dash-phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.dash-phase-title{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+.dash-phase-sub{font-size:.78rem;color:var(--muted);margin-bottom:16px}
+.dash-phase-bar{height:6px;background:rgba(99,91,255,.1);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.dash-phase-fill{height:100%;width:30%;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:3px}
+.dash-phase-pct{font-size:.7rem;color:var(--muted)}
+.dash-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.dash-action-btn{padding:11px 22px;border-radius:10px;font-size:.82rem;font-weight:500;cursor:none;transition:all .25s;font-family:'DM Sans',sans-serif}
+.dash-action-primary{background:linear-gradient(135deg,var(--purple),var(--purpleL));color:#fff;border:none;box-shadow:0 4px 14px rgba(99,91,255,.35)}
+.dash-action-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,91,255,.45)}
+.dash-action-ghost{background:#fff;color:var(--ink);border:1.5px solid rgba(99,91,255,.15)}
+.dash-action-ghost:hover{border-color:rgba(99,91,255,.35);transform:translateY(-1px)}
+@media(max-width:900px){.dash-cards{grid-template-columns:1fr 1fr}.dash-info-grid{grid-template-columns:1fr}.dash-body{padding:24px 20px 60px}.dash-nav{padding:0 20px}}
 </style>
 </head>
 <body>
@@ -456,7 +494,7 @@ footer{border-top:1px solid rgba(99,91,255,.08);padding:28px 48px;display:flex;a
   <div id="navUser" style="display:none;align-items:center;gap:12px">
     <div id="navAvatar" style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purpleL));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.95rem;color:#fff;font-weight:400;flex-shrink:0;box-shadow:0 0 0 3px rgba(99,91,255,.15)"></div>
     <span id="navName" style="font-size:.82rem;font-weight:500;color:var(--ink)"></span>
-    <a href="/dashboard.html" style="font-size:.76rem;font-weight:500;color:var(--purple);text-decoration:none;padding:6px 14px;border:1px solid rgba(99,91,255,.2);border-radius:7px;transition:all .2s;cursor:none">Dashboard →</a>
+    <a onclick="openDashboard()" style="font-size:.76rem;font-weight:500;color:var(--purple);background:none;border:1px solid rgba(99,91,255,.2);padding:6px 14px;border-radius:7px;cursor:none;font-family:inherit;transition:all .2s">My Portal</button
     <button id="logoutBtn" style="font-size:.76rem;font-weight:500;color:var(--muted);background:none;border:1px solid rgba(99,91,255,.12);padding:6px 14px;border-radius:7px;cursor:none;transition:all .2s">Sign out</button>
   </div>
 </nav>
@@ -798,9 +836,9 @@ footer{border-top:1px solid rgba(99,91,255,.08);padding:28px 48px;display:flex;a
         <div class="eyebrow">Get In Touch</div>
         <h2 class="s-h2">Let's build<br><em><span class="grad">together</span></em></h2>
         <p style="font-size:.95rem;font-weight:300;color:var(--text);line-height:1.85;margin-bottom:36px">Whether you're an investor, a researcher, a potential partner, or a future member of the HAVOC team — we'd love to hear from you.</p>
-        <a href="mailto:hello@tryhavoc.in" class="contact-email">
+        <a href="/cdn-cgi/l/email-protection#19717c757576596d6b6071786f767a377077" class="contact-email">
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x=".5" y="2" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width=".9"/><path d="M1 2.5l6.5 5L14 2.5" stroke="currentColor" stroke-width=".9"/></svg>
-          hello@tryhavoc.in
+          <span class="__cf_email__" data-cfemail="4b232e2727240b3f3932232a3d2428652225">[email&#160;protected]</span>
         </a>
         <div class="contact-meta">
           <div class="cm"><div class="cm-icon">📍</div><span>Bengaluru, India</span></div>
@@ -978,7 +1016,7 @@ footer{border-top:1px solid rgba(99,91,255,.08);padding:28px 48px;display:flex;a
   <span id="toastMsg">Welcome to HAVOC!</span>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // CURSOR
 const dot=document.getElementById('dot'),ring=document.getElementById('ring');
 let mx=0,my=0,rx=0,ry=0;
@@ -1119,6 +1157,16 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+// LOGOUT
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  try {
+    await signOut(auth);
+    showToast('👋', 'Signed out successfully.');
+  } catch(e) {
+    showToast('⚠', 'Sign out failed. Please try again.');
+  }
+});
+
 // ─── GOOGLE SIGN IN (sign in overlay) ───
 document.getElementById('googleLoginBtn').addEventListener('click', async () => {
   try {
@@ -1211,12 +1259,113 @@ window.handleGetStarted = async function() {
   }
 };
 
-// ─── LOGOUT ───
+// LOGOUT
 document.getElementById('logoutBtn').addEventListener('click', async () => {
-  await signOut(auth);
-  showToast('✓', 'Signed out successfully.');
+  try {
+    await signOut(auth);
+    closeDashboard();
+    showToast('👋', 'Signed out. See you soon!');
+  } catch(err) {
+    showToast('⚠', 'Sign out failed. Please try again.');
+  }
 });
 
+// POPULATE DASHBOARD
+function populateDash(user, d) {
+  const name = (d && d.displayName) || user.displayName || user.email.split('@')[0];
+  const first = name.split(' ')[0];
+  document.getElementById('dashGreeting').innerHTML = 'Welcome back,<br><span>' + first + '</span>';
+  document.getElementById('dashEmail').textContent = user.email;
+  document.getElementById('dashPlan').textContent = (d && d.plan) || 'Observer';
+  document.getElementById('dashRole').textContent = (d && d.role) || '—';
+  document.getElementById('dashOrg').textContent = (d && d.org) || '—';
+  document.getElementById('dashJoined').textContent = (d && d.createdAt && d.createdAt.toDate)
+    ? d.createdAt.toDate().toLocaleDateString('en-IN',{month:'long',year:'numeric'}) : 'Recently';
+  document.getElementById('dashAvatarBig').textContent = (name[0] || '?').toUpperCase();
+  document.getElementById('dashNameVal').textContent = name;
+}
+
+window.openDashboard = async function() {
+  document.body.style.overflow = 'hidden';
+  document.getElementById('dashOverlay').classList.add('open');
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      const snap = await getDoc(doc(db, 'users', user.uid));
+      populateDash(user, snap.exists() ? snap.data() : {});
+    } catch(err) { populateDash(user, {}); }
+  }
+};
+
+window.closeDashboard = function() {
+  document.body.style.overflow = '';
+  document.getElementById('dashOverlay').classList.remove('open');
+};
+
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closePage(); closeDashboard(); }});
+
 </script>
+
+<!-- DASHBOARD OVERLAY -->
+<div id="dashOverlay">
+  <div class="dash-nav">
+    <div class="dash-logo">HAVOC</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-size:.75rem;color:var(--muted)">Member Portal</span>
+      <button class="dash-close" onclick="closeDashboard()">✕</button>
+    </div>
+  </div>
+  <div class="dash-body">
+    <h1 class="dash-hello" id="dashGreeting">Welcome back,<br><span>—</span></h1>
+    <p class="dash-sub">Your HAVOC mission status and account details.</p>
+    <div class="dash-cards">
+      <div class="dash-card">
+        <div class="dash-card-label">Current Phase</div>
+        <div class="dash-card-val">Phase I</div>
+        <div class="dash-card-desc">R&amp;D Foundation · 2026</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-label">Phase Progress</div>
+        <div class="dash-card-val">30%</div>
+        <div class="dash-card-desc">Target: First Silicon by 2027</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-label">Your Access Plan</div>
+        <div class="dash-card-val" id="dashPlan" style="font-size:1.4rem">—</div>
+        <div class="dash-card-desc">Active membership</div>
+      </div>
+    </div>
+    <div class="dash-phase">
+      <div class="dash-phase-title">🔬 Phase I — R&amp;D Foundation &amp; Team Assembly</div>
+      <div class="dash-phase-sub">Establishing core research team, lab space, and substrate research programs in Bengaluru.</div>
+      <div class="dash-phase-bar"><div class="dash-phase-fill"></div></div>
+      <div class="dash-phase-pct">30% complete · In Progress</div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">Your Account</div>
+      <div class="dash-info-grid">
+        <div class="dash-info-item">
+          <div class="dash-info-label">Name</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
+            <div id="dashAvatarBig" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purpleL));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1rem;color:#fff;flex-shrink:0">?</div>
+            <div class="dash-info-val" id="dashNameVal">—</div>
+          </div>
+        </div>
+        <div class="dash-info-item"><div class="dash-info-label">Email</div><div class="dash-info-val" id="dashEmail">—</div></div>
+        <div class="dash-info-item"><div class="dash-info-label">Role / Capacity</div><div class="dash-info-val" id="dashRole">—</div></div>
+        <div class="dash-info-item"><div class="dash-info-label">Organisation</div><div class="dash-info-val" id="dashOrg">—</div></div>
+        <div class="dash-info-item"><div class="dash-info-label">Member Since</div><div class="dash-info-val" id="dashJoined">—</div></div>
+        <div class="dash-info-item"><div class="dash-info-label">Location</div><div class="dash-info-val">India</div></div>
+      </div>
+    </div>
+    <div class="dash-actions">
+      <button class="dash-action-btn dash-action-primary" onclick="closeDashboard();setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}),300)">Contact the Team →</button>
+      <button class="dash-action-btn dash-action-ghost" onclick="closeDashboard();setTimeout(()=>document.getElementById('roadmap').scrollIntoView({behavior:'smooth'}),300)">View Roadmap</button>
+      <button class="dash-action-btn dash-action-ghost" onclick="document.getElementById('logoutBtn').click()">Sign Out</button>
+    </div>
+    <p style="font-size:.72rem;color:var(--muted);margin-top:40px;padding-top:24px;border-top:1px solid rgba(99,91,255,.08)">© 2026 HAVOC Semiconductor · Bengaluru, India · Facility Under Development</p>
+  </div>
+</div>
+
 </body>
 </html>
